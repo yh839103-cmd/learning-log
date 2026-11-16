@@ -10,9 +10,10 @@
   <main class="wrap">
     <header>
       <h1>📒 我的學習紀錄</h1>
-      <div id="userBar" class="userbar hidden">
+      <div class="userbar">
         <span id="userEmail"></span>
-        <button id="logoutBtn" class="ghost">登出</button>
+        <button id="themeBtn" class="ghost" title="切換深色／淺色">🌙</button>
+        <button id="logoutBtn" class="ghost hidden">登出</button>
       </div>
     </header>
 
@@ -31,17 +32,29 @@
     </section>
 
     <section id="appView" class="hidden">
+      <section class="stats-grid">
+        <div class="stat"><div class="num" id="statStreak">0</div><div class="lbl">🔥 連續天數</div></div>
+        <div class="stat"><div class="num" id="statCount">0</div><div class="lbl">📊 7 天筆數</div></div>
+        <div class="stat"><div class="num" id="statTime">0</div><div class="lbl">⏱️ 7 天時數</div></div>
+      </section>
+
       <form id="logForm" class="card">
         <h2>新增一筆</h2>
         <label>今天學了什麼 <input id="title" required maxlength="100" placeholder="例如：Supabase RLS 門禁"></label>
+        <div class="row two">
+          <label>花了幾分鐘 <input id="minutes" type="number" min="0" max="1440" step="5" value="30"></label>
+          <label>分類 <select id="tag"></select></label>
+        </div>
         <label>心得（選填）<textarea id="note" rows="3" maxlength="2000"></textarea></label>
         <button type="submit">儲存</button>
       </form>
 
       <section class="card">
         <h2>我的紀錄 <small id="count"></small></h2>
+        <input id="search" type="search" placeholder="🔍 搜尋標題或心得…">
+        <div id="tagFilter" class="chips"></div>
         <ul id="logList" class="list"></ul>
-        <p id="empty" class="muted hidden">還沒有紀錄，先存一筆吧！</p>
+        <p id="empty" class="muted hidden"></p>
       </section>
     </section>
   </main>

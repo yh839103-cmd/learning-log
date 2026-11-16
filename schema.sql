@@ -7,6 +7,13 @@ create table if not exists public.learning_logs (
   created_at timestamptz not null default now()
 );
 
+-- 延伸：學習時數（分鐘）與分類標籤
+alter table public.learning_logs
+  add column if not exists minutes integer not null default 0 check (minutes between 0 and 1440);
+alter table public.learning_logs
+  add column if not exists tag text not null default '其他'
+  check (tag in ('程式', '英文', '數學', '專業課', '其他'));
+
 -- 開門禁
 alter table public.learning_logs enable row level security;
 

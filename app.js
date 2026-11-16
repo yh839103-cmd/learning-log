@@ -82,6 +82,19 @@ async function loadLogs() {
     li.append(box, del);
     list.append(li);
   }
+  // 最近 7 天統計（顯示在清單上方）
+  const since = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const recent = data.filter((l) => new Date(l.created_at).getTime() >= since);
+  const days = new Set(recent.map((l) => new Date(l.created_at).toLocaleDateString("zh-TW"))).size;
+  let stats = $("stats");
+  if (!stats) {
+    stats = document.createElement("p");
+    stats.id = "stats";
+    stats.style.cssText = "background:#eef6f0;color:#2f6f4e;padding:10px 14px;border-radius:8px;margin:0 0 12px;font-weight:600;";
+    list.before(stats);
+  }
+  stats.textContent = `📊 最近 7 天：${recent.length} 筆紀錄，${days} 天有學習`;
+
   $("count").textContent = `（${data.length} 筆）`;
   $("empty").classList.toggle("hidden", data.length > 0);
 }

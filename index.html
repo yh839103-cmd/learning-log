@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>我的學習紀錄</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>📒 我的學習紀錄</h1>
+      <div id="userBar" class="userbar hidden">
+        <span id="userEmail"></span>
+        <button id="logoutBtn" class="ghost">登出</button>
+      </div>
+    </header>
+
+    <p id="msg" class="msg hidden"></p>
+
+    <section id="authView" class="card hidden">
+      <h2>登入 / 註冊</h2>
+      <form id="authForm">
+        <label>Email <input id="email" type="email" required autocomplete="email"></label>
+        <label>密碼（至少 6 碼）<input id="password" type="password" required minlength="6" autocomplete="current-password"></label>
+        <div class="row">
+          <button type="submit" id="loginBtn">登入</button>
+          <button type="button" id="signupBtn" class="ghost">註冊新帳號</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="appView" class="hidden">
+      <form id="logForm" class="card">
+        <h2>新增一筆</h2>
+        <label>今天學了什麼 <input id="title" required maxlength="100" placeholder="例如：Supabase RLS 門禁"></label>
+        <label>心得（選填）<textarea id="note" rows="3" maxlength="2000"></textarea></label>
+        <button type="submit">儲存</button>
+      </form>
+
+      <section class="card">
+        <h2>我的紀錄 <small id="count"></small></h2>
+        <ul id="logList" class="list"></ul>
+        <p id="empty" class="muted hidden">還沒有紀錄，先存一筆吧！</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
